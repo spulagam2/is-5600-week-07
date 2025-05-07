@@ -49,6 +49,21 @@ const cartReducer = (state, action) => {
         ),
       }
       return updatedState
+      case UPDATE_ITEM_QUANTITY:
+      console.log({state});
+      const currentItem = state.itemsById[payload._id]
+      const updateItemState = {
+        ...state,
+        itemsById:{
+          ...state.itemsById,
+          [payload._id]: {
+            ...currentItem,
+            quantity: currentItem.quantity + payload.quantity,
+          },
+        }
+      }
+
+      return updateItemState;
     
     default:
       return state
